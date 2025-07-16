@@ -89,7 +89,7 @@ const FAQSectionWithImage = () => {
   return (
     <section
       ref={sectionRef}
-      className="py-12 md:py-16 lg:py-20 lg:px-10 bg-white"
+      className="py-12 md:py-16 lg:py-20 lg:px-10"
     >
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12 lg:gap-16">
@@ -127,7 +127,7 @@ const FAQSectionWithImage = () => {
               Frequently Asked Question
             </button>
 
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-8 px-12">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-8 px-12 text-[#2D3B36]">
               Answers to Your <br className="hidden md:block" /> Skincare Questions, All{" "}
               <br className="hidden md:block" /> in One Place.
             </h2>
@@ -140,7 +140,7 @@ const FAQSectionWithImage = () => {
                   className="border border-gray-400 rounded-lg overflow-hidden"
                 >
                   <button
-                    className="flex justify-between items-center w-full p-3 md:p-4 text-left font-semibold text-base md:text-lg  hover:bg-gray-100 transition duration-300 focus:outline-none"
+                    className="flex justify-between items-center w-full p-3 md:p-4 text-left font-semibold text-base md:text-lg text-[#2D3B36] transition duration-300 focus:outline-none"
                     onClick={() => toggleFAQ(index)}
                   >
                     {faq.question}
@@ -154,7 +154,7 @@ const FAQSectionWithImage = () => {
                       padding: openIndex === index ? "1rem 1.5rem" : "0 1.5rem",
                     }}
                   >
-                    <p className="text-gray-700 text-sm md:text-base">
+                    <p className="text-[#525349] text-sm md:text-base">
                       {faq.answer}
                     </p>
                   </div>

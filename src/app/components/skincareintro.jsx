@@ -39,7 +39,7 @@ const SkincareIntro = () => {
   ];
 
   return (
-    <section className="bg-white flex justify-center items-center px-[30px] md:px-[40px] lg:px-[102px] py-[80px] md:py-[100px] lg:py-0  lg:mb-24">
+    <section className="flex justify-center items-center px-[30px] md:px-[40px] lg:px-[102px] py-[80px] md:py-[100px] lg:py-0  lg:mb-24">
       <div className="container mx-auto max-w-[1716px] max-h-[507px]">
         <p
           ref={paraRef}

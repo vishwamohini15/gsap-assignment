@@ -89,13 +89,27 @@ function Landing() {
                 Transform your skincare routine with premium products that restore, protect, and enhance your nautural glow every day.
             </div>
 
-            <img className="creamBanner absolute max-[768px]:top-[881px] max-[768px]:w-[402px] max-[768px]:h-[399px] max-[768px]:right-auto w-[222px] h-[220px] max-[1215px]:w-[335px] max-[1215px]:h-[332px] max-[1215px]:top-[200px] top-[234px] right-[100px] rounded-[20px] opacity-0 z-20" src="/bannerCream.jpg" alt="" srcset="" />
+            <img className="creamBanner absolute max-[768px]:top-[881px] max-[768px]:w-[402px] max-[768px]:h-[399px] max-[768px]:right-auto w-[222px] h-[220px] max-[1215px]:w-[335px] max-[1215px]:h-[332px] max-[1215px]:top-[200px] top-[234px] right-[100px] rounded-[20px] opacity-0 z-20" src="/bannerCream.jpg" alt="" srcSet="" />
 
             <Skincare />
 
             <AnimatedBox />
-            
-            <img className="girlBanner max-[768px]:absolute max-[768px]:top-[401px] max-[768px]:w-[402px] max-[768px]:h-[441px] max-[768px]:mt-[0px] max-[768px]:ml-0 max-[1215px]:w-[360px] max-[1215px]:h-[400px] w-[610px] h-[676px] max-[1215px]:mt-[792px] max-[1215px]:ml-[40px] mt-[571px] m-auto rounded-[30px] opacity-0" src="/bannerGirl.png"   alt="" srcset="" />
+
+            <div className="girlBanner max-[768px]:absolute max-[768px]:top-[401px] max-[768px]:w-[402px] max-[768px]:h-[441px] max-[768px]:mt-[0px] max-[768px]:ml-0 max-[1215px]:w-[360px] max-[1215px]:h-[400px] w-[610px] h-[676px] max-[1215px]:mt-[792px] max-[1215px]:ml-[40px] mt-[571px] m-auto rounded-[30px] opacity-0 overflow-hidden">
+
+                <img className="w-full h-full" src="/bannerGirl.png" alt="" srcSet="" />
+
+                <div className="absolute max-[768px]:w-[332px] max-[768px]:h-[80px]  bottom-[30px] left-[50%] -translate-x-[50%]  max-[1215px]:w-[318px] max-[1215px]:h-[67px] w-[476px] h-[100px] rounded-[100px] flex flex-row max-[1215px]:gap-[16px] gap-[38px] bg-[#EFF5E1] items-center p-[6px]">
+
+                    <div className="relative max-[1215px]:w-[57px] max-[1215px]:h-[57px]  w-[88px] h-[88px] border-2 border-dotted border-[#2D3B36] rounded-full flex justify-center items-center p-[3px]">
+                        <img className="" src="/cream2.png" alt="" srcSet="" />
+                    </div>
+
+                    <p className="max-[1215px]:w-[211px] w-[304px] font-normal max-[1215px]:text-[14px] text-[20px] leading-[100%] tracking-[0] font-inter text-[#2D3B36]">While giving you an invigorating cleansing experience.</p>
+
+                </div>
+
+            </div>
 
 
             <div className="counter fixed w-[223px] h-[102px] bottom-0 right-0 opacity-100 font-[Inter] font-normal text-[140px] leading-[60px] tracking-[-5%] uppercase text-black">{count}</div>

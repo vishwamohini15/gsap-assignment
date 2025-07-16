@@ -1,14 +1,20 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const ProductShowcase = () => {
+
+  gsap.registerPlugin(ScrollToPlugin);
+
   const headingRef = useRef(null);
   const buttonRef = useRef(null);
   const cardsRef = useRef([]);
+  const [times, setTimes] = useState(1);
+  const [scrollTimes, setScrollTimes] = useState(1);
 
   useEffect(() => {
     // Animate button
@@ -52,17 +58,44 @@ const ProductShowcase = () => {
   }, []);
 
   const products = [
-    { id: 1, name: "ALYA SKIN CLEANSER", src: "/alya.png", cartIcon: "🛒" },
-    { id: 2, name: "GLOW SERUM", src: "/neces.png", cartIcon: "🛒" },
-    { id: 3, name: "HYDRATING CREAM", src: "/ritiul.png", cartIcon: "🛒" },
+    { id: 1, name: "ALYA SKIN CLEANSER", src: "/alya.png", price: "$29.99", cartIcon: "🛒" },
+    { id: 2, name: "GLOW SERUM", src: "/neces.png", price: "$27.99", cartIcon: "🛒" },
+    { id: 3, name: "HYDRATING CREAM", src: "/ritiul.png", price: "$19.99", cartIcon: "🛒" },
   ];
 
   const heading = "Skincare That Brings Out Your Natural Radiance";
 
+  const containerRef = useRef();
+
+  const scrollByAmount = (amount) => {
+    const container = containerRef.current;
+
+    if (scrollTimes == times) {
+      console.log("ALL DONE")
+      return;
+    }
+
+    gsap.to(container, {
+      scrollTo: {
+        x: amount * scrollTimes,
+      },
+      duration: 0.8,
+      ease: 'power2.out'
+    });
+  };
+
+  useEffect(() => {
+    const container = containerRef.current;
+    setTimes(Math.floor(container.scrollWidth / container.clientWidth));
+  }, [])
+
+
   return (
-    <section className="py-12 md:py-16 lg:py-20 lg:px-32 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row items-center justify-between mb-12 md:mb-16 lg:mb-20 gap-8 md:gap-0">
+    <section className="py-12 md:py-16 lg:py-20 lg:px-[100px]">
+      <div className=" w-full mx-auto">
+
+        <div className="flex max-[768px]:flex-col max-[1215px]:flex-col flex-row items-center justify-between mb-12 md:mb-16 lg:mb-20 max-[768px]:gap-[50px] gap-[80px]">
+
           {/* Best Selling Products Button */}
           <button
             ref={buttonRef}
@@ -77,10 +110,10 @@ const ProductShowcase = () => {
           {/* Heading with word-by-word span */}
           <div
             ref={headingRef}
-            className="text-center md:flex-1 md:mx-4"
+            className="max-[800px]:w-[80%] w-[678px]"
             style={{ lineHeight: "1.2" }}
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+            <h2 className="w-full text-3xl md:text-4xl lg:text-5xl font-bold text-[#2D3B36]">
               {heading.split(" ").map((word, idx) => (
                 <span
                   key={idx}
@@ -94,44 +127,69 @@ const ProductShowcase = () => {
           </div>
 
           {/* Arrows (No change) */}
-          <div className="flex space-x-4">
-            <button className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 transition duration-200 focus:outline-none">
-              <svg className="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
-              </svg>
+          <div className="max-[1215px]:hidden flex space-x-4">
+
+            <button onClick={() => { scrollByAmount(-100), setScrollTimes(scrollTimes - 1) }} className="w-[60px] h-[60px] rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 transition duration-200 focus:outline-none relative overflow-hidden">
+              <img className="absolute -right-4" src="./arrow_left.png" alt="" />
             </button>
-            <button className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-black flex items-center justify-center hover:bg-gray-800 transition duration-200 focus:outline-none">
-              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
-              </svg>
+
+            <button onClick={() => { scrollByAmount(100), setScrollTimes(scrollTimes + 1) }} className="w-[60px] h-[60px] rounded-full bg-black flex items-center justify-center hover:bg-gray-800 transition duration-200 focus:outline-none relative overflow-hidden">
+              <img className="absolute -left-4" src="./arrow_right.png" alt="" />
             </button>
+
           </div>
+
         </div>
 
         {/* Product Cards with refs */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div ref={containerRef} className="mx-auto w-full flex flex-row gap-[25px] overflow-scroll hideScrollbar">
           {products.map((product, index) => (
-            <div
-              key={product.id}
-              className="bg-white p-7 rounded-lg shadow-lg overflow-hidden group"
-              ref={(el) => (cardsRef.current[index] = el)}
-            >
-              <div className="relative">
-                <img
-                  src={product.src}
-                  alt={product.name}
-                  className="w-full h-96 object-center"
-                />
-                <div className="absolute bottom-4 left-4 right-4 p-4 bg-white bg-opacity-90 flex items-center justify-between rounded-2xl">
-                  <span className="text-base md:text-lg font-semibold text-gray-800">{product.name}</span>
-                  <button className="bg-black text-white p-2 rounded-full hover:bg-gray-800 transition duration-200 focus:outline-none">
-                    {product.cartIcon}
-                  </button>
+            <div key={product.id}>
+              <div
+                className="max-[768px]:w-[322px] max-[768px]:h-[478px] max-[1215px]:w-[560px] w-[560px] h-[770px]"
+                ref={(el) => (cardsRef.current[index] = el)}
+              >
+
+                <div className="relative w-full h-full">
+
+                  <img
+                    src={product.src}
+                    alt={product.name}
+                    className="w-full h-full"
+                  />
+
+                  <div className="absolute bottom-4 left-4 right-4 h-[100px] p-[10px] bg-white bg-opacity-90 flex items-center justify-between rounded-2xl">
+
+                    <div className="flex flex-col gap-[32px] pl-[10px]">
+                      <span className="text-base font-normal text-gray-800 max-[768px]:text-[14px] text-[20px]">{product.name}</span>
+                      <span className="text-base font-normal text-[#2D3B3680] max-[768px]:text-[10px] text-[16px]">FROM {product.price}</span>
+                    </div>
+
+                    <button className="w-20 h-20 bg-[#2D3B361A] text-white p-2 rounded-[10px] hover:bg-gray-800 transition duration-200 flex justify-center items-center">
+                      <img src="./cart2.png" alt="" />
+                    </button>
+
+                  </div>
+
                 </div>
+
               </div>
             </div>
           ))}
         </div>
+
+        <div className="max-[1215px]:flex hidden space-x-4 justify-center mt-[40px]">
+
+          <button onClick={() => { scrollByAmount(-100), setScrollTimes(scrollTimes - 1) }} className="w-[60px] h-[60px] rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 transition duration-200 focus:outline-none relative overflow-hidden">
+            <img className="absolute -right-4" src="./arrow_left.png" alt="" />
+          </button>
+
+          <button onClick={() => { scrollByAmount(100), setScrollTimes(scrollTimes + 1) }} className="w-[60px] h-[60px] rounded-full bg-black flex items-center justify-center hover:bg-gray-800 transition duration-200 focus:outline-none relative overflow-hidden">
+            <img className="absolute -left-4" src="./arrow_right.png" alt="" />
+          </button>
+
+        </div>
+
       </div>
     </section>
   );

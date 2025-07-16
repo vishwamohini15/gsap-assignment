@@ -39,3 +39,12 @@ body {
   background-color: #e5e7eb; /* gray-200 on hover */
   transform: scale(1.05);
 }
+
+/* CSS Modules or global.css */
+.hideScrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+}
+.hideScrollbar::-webkit-scrollbar {
+  display: none; 
+}

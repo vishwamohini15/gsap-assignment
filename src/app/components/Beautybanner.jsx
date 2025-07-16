@@ -4,7 +4,7 @@ import React from 'react';
 
 const BeautyBanner = () => {
   return (
-    <section className="py-8 md:py-12 lg:py-16 bg-white flex justify-center items-center">
+    <section className="max-[1215px]:hidden py-8 md:py-12 lg:py-16 flex justify-center items-center px-[100px]">
       <div className="container mx-auto px-4">
         <div className="relative w-full aspect-video md:aspect-auto md:h-[500px] lg:h-[600px] rounded-lg overflow-hidden shadow-xl">
           {/* Background Image */}
