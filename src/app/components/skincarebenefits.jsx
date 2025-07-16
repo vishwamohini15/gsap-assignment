@@ -68,7 +68,7 @@ const SkincareBenefits = () => {
   return (
     <section
       ref={sectionRef}
-      className="bg-[#F9FAFB] py-[60px] px-[30px] md:px-[60px] lg:px-[100px]"
+      className=" py-[60px] px-[30px] md:px-[60px] lg:px-[100px]"
     >
       <div className="flex flex-col lg:flex-row items-start gap-12 max-w-[1440px] mx-auto">
 

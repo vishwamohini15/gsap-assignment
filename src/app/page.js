@@ -11,6 +11,8 @@ import Landing from "./components/Landing";
 export default function Home() {
   return (
     <>
+    <div className="bg-[#EFF5E1]">
+
     {/* <Navbar></Navbar> */}
     <Landing></Landing>
     <SkincareIntro></SkincareIntro>
@@ -20,6 +22,7 @@ export default function Home() {
     <ProductDisplay></ProductDisplay>
     <FAQSectionWithImage></FAQSectionWithImage>
     <Footer></Footer>
+    </div>
     </>
   );
 }
